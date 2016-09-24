@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html ng-app='imdb'>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>IMDB Class</title>
+		<link href="css/style.css" rel="stylesheet" />
+		<script src="js/angular.js"></script>
+		<!--app-->
+		<script src="app/imdb.js"></script>
+
+		<!--controllers-->
+		<script src="app/controllers/searchBox.js"></script>
+
+		<!--services-->
+		<script src="app/Services/message.js"></script>
+	</head>
+	<body>
+		<h1> The Movie DB</h1>
+		<div ng-controller="searchBox" >
+			Actors:
+			<div>
+				<input ng-model='searchName' ng-change="getActors()" />
+			</div>
+
+			<div ng-repeat="r in results  | orderBy:'-popularity'" class="images" ng-click="getActorsMovie(r.id)"/>
+
+			<div>
+				{{r.name}}
+			</div>
+			<img ng-src="http://image.tmdb.org/t/p/w500{{r.profile_path}}" class="actor-box">
+			<hr>
+
+		</div>
+		<p>
+			before you click on the actor the result order by popularity
+		</p>
+		<p>
+			click on the actor to get he's movies
+		</p>
+
+		<div ng-show="moviesLoaded">
+			<div ng-repeat="c in cast" class="actor-box">
+				<div class="actor-box">
+					{{c.original_title}}
+				</div>
+				<img ng-src="http://image.tmdb.org/t/p/w500{{c.poster_path}}" class="actor-box">
+
+			</div>
+		</div>
+
+		</div>
+		<br>
+		<br>
+
+		<div ng-controller="searchBox" >
+			Movies:
+			<div>
+				<input ng-model='searchName' ng-change="getMovies()" />
+			</div>
+			<div ng-repeat="r in results | orderBy:'release_date'" class="images" ng-click="getMovieActors(r.id)"/>
+				<img ng-src="http://image.tmdb.org/t/p/w500{{r.backdrop_path}}" class="actor-box">
+				<br>
+				<div>
+					{{r.title}}
+				</div>
+				<br>
+				<div>
+					{{r.id}}
+				</div>
+				<hr>
+
+			</div>
+			<p>
+				before you click on the movie the result order by release date
+			</p>
+			<p>
+				click on the movie to get he's actors
+			</p>
+
+		</div>
+
+
+		<div ng-show="actorLoaded">
+			<div ng-repeat="c in cast" class="actor-box">
+				<div class="actor-box">
+					{{c.name}}
+					{{c.character}}
+				</div>
+				<img ng-src="http://image.tmdb.org/t/p/w500{{c.profile_path}}" class="actor-box">
+
+			</div>
+		</div>
+
+		</div>
+		<br>
+		<br>
+
+	</body>
+</html>
+

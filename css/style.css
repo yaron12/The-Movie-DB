@@ -1,0 +1,17 @@
+.actor-box{
+	width: 200px;
+	height: 300px;
+	float: left;
+	margin: 5px;
+	text-align: center;
+}
+
+.images{
+	float: left;
+	margin: 5px;
+	text-align: center;
+	
+}
+.fixed{
+	position: fixed;
+}
