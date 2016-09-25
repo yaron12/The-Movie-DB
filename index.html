@@ -17,6 +17,8 @@
 	</head>
 	<body>
 		<h1> The Movie DB</h1>
+		
+		
 		<div ng-controller="searchBox" >
 			Actors:
 			<div>
@@ -27,6 +29,9 @@
 
 			<div>
 				{{r.name}}
+			</div>
+			<div>
+				{{r.id}}
 			</div>
 			<img ng-src="http://image.tmdb.org/t/p/w500{{r.profile_path}}" class="actor-box">
 			<hr>
@@ -43,6 +48,7 @@
 			<div ng-repeat="c in cast" class="actor-box">
 				<div class="actor-box">
 					{{c.original_title}}
+					{{c.id}}
 				</div>
 				<img ng-src="http://image.tmdb.org/t/p/w500{{c.poster_path}}" class="actor-box">
 
@@ -58,15 +64,23 @@
 			<div>
 				<input ng-model='searchName' ng-change="getMovies()" />
 			</div>
-			<div ng-repeat="r in results | orderBy:'release_date'" class="images" ng-click="getMovieActors(r.id)"/>
+			<div ng-repeat="r in results" class="images" ng-click="getMovieActors(r.id)"/>
 				<img ng-src="http://image.tmdb.org/t/p/w500{{r.backdrop_path}}" class="actor-box">
 				<br>
 				<div>
-					{{r.title}}
+					<b>name:</b>{{r.title}}
 				</div>
 				<br>
 				<div>
-					{{r.id}}
+					<b>release date:</b>{{r.release_date}}
+				</div>
+				<br>
+				<div>
+					<b>popularity:</b>{{r.popularity}}
+				</div>
+				<br>
+				<div>
+					<b>id:</b>{{r.id}}
 				</div>
 				<hr>
 
@@ -75,24 +89,11 @@
 				before you click on the movie the result order by release date
 			</p>
 			<p>
-				click on the movie to get he's actors
+				click on the movie to get similar movies
 			</p>
 
 		</div>
 
-
-		<div ng-show="actorLoaded">
-			<div ng-repeat="c in cast" class="actor-box">
-				<div class="actor-box">
-					{{c.name}}
-					{{c.character}}
-				</div>
-				<img ng-src="http://image.tmdb.org/t/p/w500{{c.profile_path}}" class="actor-box">
-
-			</div>
-		</div>
-
-		</div>
 		<br>
 		<br>
 
